@@ -865,6 +865,7 @@ h2.title {
     font-size: 14px;
     font-weight: 400;
     color: #696763;
+    height:40px;
 }
 
 .productinfo img {
@@ -1707,6 +1708,10 @@ h2.title {
 
 .user_info .single_field {
     width: 31%
+}
+
+.user_info .double_field {
+    width: 64%
 }
 
 .user_info .single_field.zip-field input {
