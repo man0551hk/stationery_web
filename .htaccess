@@ -1,6 +1,8 @@
 RewriteEngine On
 RewriteRule ^product/([A-Za-z0-9-]+)/?$ productDetail.php?id=$1 [NC,L]
-RewriteRule ^category/([A-Za-z0-9-]+)/?$ category.php?id=$1 [NC,L]
-RewriteRule ^brand/([A-Za-z0-9-]+)/?$ brand.php?id=$1 [NC,L]
+RewriteRule ^category/(.*)/?$ product.php?category=$1 [NC,L]
+RewriteRule ^category/?$ product.php [NC,L]
+RewriteRule ^brand/(.*)/?$ product.php?brand=$1 [NC,L]
+RewriteRule ^brand/?$ product.php [NC,L]
 RewriteRule ^cart/?$ cart.php
 RewriteRule ^contact/?$ contact.php

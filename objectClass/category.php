@@ -15,7 +15,7 @@ class CategoryClass {
             $topMenu .= '<li><a href="'.$this->domain.'category/'.$row["cat_id"].'/">'.$row["name"].'</a></li>';
             $sideMenu .= '<div class="panel panel-default">';
             $sideMenu .= '<div class="panel-heading">';
-            $sideMenu .= '<h4 class="panel-title"><a href="'.$this->domain.'category/'.$row["cat_id"].'/">'.$row["name"].' ('.$row["total"].')</a></h4>';
+            $sideMenu .= '<h4 class="panel-title"><a href="'.$this->domain.'category/'.$row["name"].'/">'.$row["name"].' ('.$row["total"].')</a></h4>';
             $sideMenu .= '</div>';
             $sideMenu .= '</div>';
         }

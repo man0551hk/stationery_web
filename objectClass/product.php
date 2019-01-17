@@ -51,9 +51,9 @@ class ProductClass {
                 echo '<span>';
                 echo '<span>HK $'.$row["price"].'</span>';
                 echo '<label>數量:</label>';
-                echo '<input type="text" value="" />';
+                echo '<input type="text" value="1" />';
                 echo '<button type="button" class="btn btn-fefault cart">';
-                echo '<i class="fa fa-shopping-cart"></i>/';
+                echo '<i class="fa fa-shopping-cart"></i>';
                 echo '加入購物車';
                 echo '</button>';
                 echo '</span>';
@@ -64,6 +64,104 @@ class ProductClass {
             echo '</div>';
             echo '</div>';
         }
+    }
+    
+    function GetCategoryProduct($category, $page, $keyword) {
+        $offset = ($page - 1) * 15;  
+        $query = "select p.id, p.path, p.price, p.name from product p inner join category c on p.cat_id = c.cat_id where c.name = '$category' order by p.id desc limit $offset, 15";
+        $result = mysqli_query($this->link, $query);
+        while ($row = mysqli_fetch_array($result)) {
+            echo '<div class="col-sm-4">';
+            echo '<div class="product-image-wrapper"  style = "min-height:392px;">';
+            echo '<div class="single-products">';
+            echo '<div class="productinfo text-center">';
+            echo '<a href = "'.$this->domain.'product/'.$row["id"].'/">';
+            echo '<img src="'.$this->domain.$row["path"].'" alt="" height="196"/>';
+            echo '</a>';
+            echo '<h2>$'.$row["price"].'</h2>';
+            echo '<p>'.$row["name"].'</p>';
+            echo '<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>加入購物車</a>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';     
+        }
+
+        $query = "select count(*) as total from product p inner join category c on p.cat_id = c.cat_id where c.name = '$category'";
+        $result = mysqli_query($this->link, $query);
+        $total = 0;
+        $pages = '';
+        $previous = '<a href = "'.$this->domain.'category/'.$category.'/&page='.($page - 1).'">上一頁</a> ';
+        $next = ' <a href = "'.$this->domain.'category/'.$category.'/&page='.($page + 1).'">下一頁</a>';
+        if ($row = mysqli_fetch_array($result)) {
+            $total = $row["total"];
+            $totalPage = $total / 15;
+            if ($total % 15 != 0 ) {
+                $totalPage += 1;
+            }
+        }
+        if ($page > 1) {
+            $pages .= $previous;
+        } else {
+            $pages .= '<a href = "" style = "cursor: not-allowed;color:gray;"> 上一頁 </a>';
+        }
+        $pages .= '第'.$page.'頁';
+        if ($page < $totalPage) {
+            $pages .= $next;
+        } else {
+            $pages .= '<a href = "#" style = "cursor: not-allowed;color:gray;"> 下一頁 </a>';
+        }
+
+        return $pages;
+    }
+
+    function GetBrandProduct($brand, $page) {
+        $offset = ($page - 1) * 15;  
+        $query = "select p.id, p.path, p.price, p.name from product p inner join brand b on p.brand_id = b.brand_id where b.name_en = '$brand' order by p.id desc limit $offset, 15";
+        $result = mysqli_query($this->link, $query);
+        while ($row = mysqli_fetch_array($result)) {
+            echo '<div class="col-sm-4">';
+            echo '<div class="product-image-wrapper"  style = "min-height:392px;">';
+            echo '<div class="single-products">';
+            echo '<div class="productinfo text-center">';
+            echo '<a href = "'.$this->domain.'product/'.$row["id"].'/">';
+            echo '<img src="'.$this->domain.$row["path"].'" alt="" height="196"/>';
+            echo '</a>';
+            echo '<h2>$'.$row["price"].'</h2>';
+            echo '<p>'.$row["name"].'</p>';
+            echo '<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>加入購物車</a>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';     
+        }
+
+        $query = "select count(*) as total from product p inner join brand b on p.brand_id = b.brand_id where b.name_en = '$brand'";
+        $result = mysqli_query($this->link, $query);
+        $total = 0;
+        $pages = '';
+        $previous = '<a href = "'.$this->domain.'brand/'.$brand.'/&page='.($page - 1).'">上一頁</a> ';
+        $next = ' <a href = "'.$this->domain.'brand/'.$brand.'/&page='.($page + 1).'">下一頁</a>';
+        if ($row = mysqli_fetch_array($result)) {
+            $total = $row["total"];
+            $totalPage = $total / 15;
+            if ($total % 15 != 0 ) {
+                $totalPage += 1;
+            }
+        }
+        if ($page > 1) {
+            $pages .= $previous;
+        } else {
+            $pages .= '<a href = "" style = "cursor: not-allowed;color:gray;"> 上一頁 </a>';
+        }
+        $pages .= '第'.$page.'頁';
+        if ($page < $totalPage) {
+            $pages .= $next;
+        } else {
+            $pages .= '<a href = "#" style = "cursor: not-allowed;color:gray;"> 下一頁 </a>';
+        }
+
+        return $pages;        
     }    
 }
 $productClass = new ProductClass($domain, $link);

@@ -84,13 +84,33 @@ $brandMenu = $brandClass->GetBrandMenu();
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html" class="active">主頁</a></li>
-								<li class="dropdown"><a href="#">分類<i class="fa fa-angle-down"></i></a>
+								<li><a href="<?=$domain?>"
+								<?php
+									if (strpos($_SERVER['PHP_SELF'], 'index.php') !== false) {
+										echo 'class="active"';
+									}
+								?>
+								>主頁</a></li>
+								<li class="dropdown">
+									<a href="#"
+									<?php
+									if (isset($_GET["category"])) {
+										echo 'class="active"';
+									}
+									?>
+									>分類<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <?=$categoryMenu[0] ?>
                                     </ul>
                                 </li> 
-								<li class="dropdown"><a href="#">品牌<i class="fa fa-angle-down"></i></a>
+								<li class="dropdown">
+									<a href="#"
+									<?php
+									if (isset($_GET["brand"])) {
+										echo 'class="active"';
+									}
+									?>
+									>品牌<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <?=$brandMenu[0] ?>
                                     </ul>
@@ -102,14 +122,16 @@ $brandMenu = $brandClass->GetBrandMenu();
 					</div>
 					<div class="col-sm-3">
 						<div class="search_box pull-right">
-							<input type="text" placeholder="Search"/>
+							<input type="text" id = "keyword" placeholder="關鍵字"/>
+							<a herf = '#' onclick = 'search("<?=$GET["category"]?>", "<?=$GET["brand"]?>", keyword.value);' class = 'btn btn-default'>搜尋</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div><!--/header-bottom-->
     </header><!--/header-->
-    
+	
+
 	
 
 
