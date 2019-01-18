@@ -23,7 +23,8 @@ function AddToCart(id, qty)
             qty: qty
         },
         success: function (response) {
-            
+            console.log(response);
+            $("#cartTotal").html(response);
         }, 
         error: function (jqXHR, exception) {
             console.log(jqXHR);

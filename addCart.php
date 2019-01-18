@@ -26,6 +26,13 @@ if (isset($_POST["id"]) && isset($_POST["qty"]))
         $query = "insert into cart (session_id, id, price, qty, sub_total) values ('$session_id', '$id', '$price', '$qty', '$sub_total')";
         mysqli_query($link, $query);
     }
+    $total = 0;
+    $query = "select sum(qty) as total from cart where session_id = '$session_id' and id = '$id'";
+    $result = mysqli_query($link, $query);
+    if ($row = mysqli_fetch_array($result)) {
+        $total = $row["total"];
+    }
+    echo $total;
 }
 
 ?>
