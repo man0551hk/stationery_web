@@ -24,13 +24,10 @@
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
     <script type="text/javascript" src="<?=$domain?>js/gmaps.js"></script>
 	<script src="<?=$domain?>js/contact.js"></script>
-
+	<script src="<?=$domain?>js/function.js"></script>
 	<script>
-		search(category, brand, keyword) {
-			console.log(category);
-			console.log(brand);
-			console.log(keyword);
-		}
+		SetDomain('<?=$domain?>');
 	</script>
+
 </body>
 </html>

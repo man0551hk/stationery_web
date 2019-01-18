@@ -123,7 +123,7 @@ $brandMenu = $brandClass->GetBrandMenu();
 					<div class="col-sm-3">
 						<div class="search_box pull-right">
 							<input type="text" id = "keyword" placeholder="關鍵字"/>
-							<a herf = '#' onclick = 'search("<?=$GET["category"]?>", "<?=$GET["brand"]?>", keyword.value);' class = 'btn btn-default'>搜尋</a>
+							<a herf = '#' onclick = 'Search("<?=$_GET["category"]?>", "<?=$_GET["brand"]?>", keyword.value);' class = 'btn btn-default'>搜尋</a>
 						</div>
 					</div>
 				</div>

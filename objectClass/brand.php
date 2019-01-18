@@ -12,8 +12,8 @@ class BrandClass {
         $topMenu = '';
         $sideMenu = '';
         while ($row = mysqli_fetch_array($result)) {
-            $topMenu .= '<li><a href="'.$this->domain.'brand/'.$row["brand_id"].'/">'.$row["name_en"].'</a></li>';
-            $sideMenu .= '<li><a href="'.$this->domain.'brand/'.$row["brand_id"].'/"> <span class="pull-right">('.$row["total"].')</span>'.$row["name_en"].'</a></li>';
+            $topMenu .= '<li><a href="'.$this->domain.'brand/'.$row["name_en"].'/">'.$row["name_en"].'</a></li>';
+            $sideMenu .= '<li><a href="'.$this->domain.'brand/'.$row["name_en"].'/"> <span class="pull-right">('.$row["total"].')</span>'.$row["name_en"].'</a></li>';
         }
         return [$topMenu, $sideMenu];
     }
